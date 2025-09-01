@@ -1,253 +1,238 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tech for Students — AI Tools & Study Guides</title>
-  <meta name="description" content="Students के लिए best AI tools, free apps, study guides और laptop/phone recommendations — Tech for Students" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Notes - Free Education Resources</title>
   <style>
-    :root{--bg:#f8fafc;--card:#ffffff;--muted:#6b7280;--accent:#111827}
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial}
-    body{background:linear-gradient(180deg,var(--bg),#fff);color:var(--accent);line-height:1.5}
-    .container{max-width:1100px;margin:28px auto;padding:16px}
-
-    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:44px;height:44px;border-radius:10px;background:#111827;color:#fff;display:grid;place-items:center;font-weight:700}
-    nav a{margin-left:18px;color:var(--muted);text-decoration:none}
-    nav a:hover{color:var(--accent)}
-
-    .hero{display:grid;grid-template-columns:1fr;gap:18px;margin:18px 0}
-    @media(min-width:900px){.hero{grid-template-columns:1fr 420px}}
-    .card{background:var(--card);border:1px solid #e6e9ee;padding:18px;border-radius:14px}
-
-    .title{font-size:28px;font-weight:800;margin:0}
-    .subtitle{color:var(--muted);margin-top:6px}
-
-    .searchbar{display:flex;gap:8px;margin-top:14px}
-    .searchbar input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #e2e8f0}
-    .btn{background:#111827;color:#fff;padding:10px 12px;border-radius:10px;border:0;cursor:pointer}
-
-    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .chip{padding:8px 12px;border-radius:999px;border:1px solid #e6e9ee;background:#fff;color:var(--muted);font-size:14px;cursor:pointer}
-    .chip.active{background:#111827;color:#fff;border-color:#111827}
-
-    .grid{display:grid;grid-template-columns:repeat(1,1fr);gap:14px;margin-top:16px}
-    @media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(min-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
-
-    .tool{padding:14px;border-radius:12px;border:1px solid #eef2f7;background:#fff;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px}
-    .tool h3{margin:0;font-size:16px}
-    .tool p{margin:0;color:var(--muted);font-size:14px}
-    .meta{font-size:12px;color:#94a3b8}
-
-    .sidebar .small{font-size:14px;color:var(--muted)}
-    .list{margin:0;padding-left:18px}
-
-    footer{margin-top:28px;padding:24px 0;color:var(--muted);font-size:13px;border-top:1px solid #eef2f7}
-
-    /* simple subscribe */
-    .subscribe{display:flex;gap:8px;margin-top:12px}
-    .subscribe input{flex:1;padding:10px;border-radius:10px;border:1px solid #e2e8f0}
-
-    a.link{color:#0b69ff;text-decoration:none;font-weight:600}
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background: #f4f6f9;
+      color: #333;
+      min-height: 100vh;
+      
+    }
+    header {
+      background: #2d89ef;
+      color: white;
+      padding: 15px 20px;
+      text-align: center;
+     
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      background: #eaf1ff;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 10px;
+    }
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #2d89ef;
+    }
+    .search-box {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .search-box input {
+      width: 80%;
+      max-width: 400px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+      font-size: 1em;
+    }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      color: #444;
+    }
+    .card p {
+      font-size: 0.9em;
+      margin-bottom: 15px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      background: #2d89ef;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background: #1e5bbf;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2d89ef;
+      color: white;
+      margin-top: auto;
+    }
+    @media only screen and (max-width:350px){
+        nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="logo">TS</div>
-        <div>
-          <div style="font-weight:700">Tech for Students</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">AI tools • Study guides • Gadgets for students</div>
-        </div>
+
+  <header>
+    <h1>📘 Note-Thiefer</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#notes">Notes</a>
+      <a href="#blog">Blog</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Free Study Notes & Exam Resources</h1>
+    <p>Prepare for JEE, NEET, SSC, and other exams with free notes and guides.</p>
+  </section>
+
+  <!-- Notes Section -->
+  <section id="notes" class="section">
+    <h2>📂 Notes Collection</h2>
+    <div class="search-box">
+      <input type="text" id="noteSearch" placeholder="🔍 Search Notes...">
+    </div>
+    <div class="notes-grid" id="notesGrid">
+      <div class="card">
+        <h3>Maths Notes</h3>
+        <p>Algebra, Calculus, Geometry and more.</p>
+        <a href="#" class="btn">Download PDF</a>
       </div>
-      <nav>
-        <a href="#tools">Tools</a>
-        <a href="#guides">Guides</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+      <div class="card">
+        <h3>Physics Notes</h3>
+        <p>Mechanics, Optics, Thermodynamics etc.</p>
+        <a href="#" class="btn">Download PDF</a>
+      </div>
+      <div class="card">
+        <h3>Chemistry Notes</h3>
+        <p>Organic, Inorganic and Physical Chemistry.</p>
+        <a href="#" class="btn">Download PDF</a>
+      </div>
+      <div class="card">
+        <h3>General Knowledge</h3>
+        <p>GK notes for competitive exams.</p>
+        <a href="#" class="btn">Download PDF</a>
+      </div>
+    </div>
+  </section>
 
-    <main>
-      <section class="hero">
-        <div>
-          <div class="card">
-            <h1 class="title">Students के लिए Best AI tools & study guides</h1>
-            <div class="subtitle">Doubts solve करो, notes बनाओ, research करो — सब कुछ तेज़ी से. Start building your study workflow today.</div>
+  <!-- Blog Section -->
+  <section id="blog" class="section">
+    <h2>📝 Study Tips & Blog</h2>
 
-            <div class="searchbar" style="margin-top:16px">
-              <input id="search" placeholder="Search tools, categories or features (e.g. 'notes', 'grammarly')" />
-              <button class="btn" id="clearBtn">Clear</button>
-            </div>
+    <div class="notes-grid" id="blogGrid">
+      <div class="card">
+        <h3>Time Management for Exams</h3>
+        <p>Learn how to manage your study schedule effectively.</p>
+        <a href="#" class="btn">Read More</a>
+      </div>
+      <div class="card">
+        <h3>Top 5 Free Learning Apps</h3>
+        <p>Boost your learning with these amazing apps.</p>
+        <a href="#" class="btn">Read More</a>
+      </div>
+      <div class="card">
+        <h3>How to Stay Motivated</h3>
+        <p>Simple tips to stay consistent in studies.</p>
+        <a href="#" class="btn">Read More</a>
+      </div>
+    </div>
+  </section>
 
-            <div class="chips" id="categoryChips">
-              <!-- chips rendered by JS -->
-            </div>
+  <section id="about" class="section">
+    <h2>ℹ️ About Us</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      Welcome to Study Notes! We provide free resources, notes, and study tips for students preparing for different exams. 
+      Our mission is to make learning easy and accessible to everyone.
+    </p>
+  </section>
 
-            <div style="margin-top:14px;color:var(--muted);font-size:14px">Pro tip: write articles like "Best laptops for students 2025" and "Top free apps for students" — these rank well on Google.</div>
-          </div>
+  <section id="contact" class="section">
+    <h2>📧 Contact</h2>
+    <p style="text-align:center;">Email us at: <b>yourmail@example.com</b></p>
+  </section>
 
-          <!-- Guides preview -->
-          <div style="margin-top:14px" id="guides">
-            <div class="card">
-              <h2 style="margin:0 0 8px 0">Starter Guides (Write these first)</h2>
-              <ul class="list">
-                <li>Best Laptops for Students (2025) — budget tiers & checklist</li>
-                <li>Top 10 Free Android Apps for Study</li>
-                <li>AI Tools for Exam Preparation: How to prompt effectively</li>
-                <li>Time Management for Online Classes</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <aside class="card sidebar">
-          <div style="font-weight:700">Quick Links</div>
-          <div class="small" style="margin-top:8px">
-            <div>• <a class="link" href="#">Start a blog on GitHub Pages</a></div>
-            <div style="margin-top:6px">• <a class="link" href="#">How to apply for AdSense</a></div>
-          </div>
-
-          <div style="margin-top:12px">
-            <div style="font-weight:700;margin-bottom:8px">Newsletter</div>
-            <div style="color:var(--muted);font-size:14px">Weekly study tech tips — 0% spam.</div>
-            <div class="subscribe">
-              <input id="email" placeholder="Enter your email" />
-              <button class="btn" id="subBtn">Subscribe</button>
-            </div>
-            <div id="subMsg" style="font-size:13px;color:green;margin-top:8px;display:none">Subscribed (demo)</div>
-          </div>
-
-          <div style="margin-top:14px;font-size:13px;color:var(--muted)">
-            <div style="font-weight:700">Start writing</div>
-            <div style="margin-top:6px">Write 3–4 long articles weekly, focus on keywords like "best for students", "under ₹30,000" etc.</div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- Tools gallery -->
-      <section id="tools" style="margin-top:18px">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-          <h2 style="margin:0">Top AI Study Tools</h2>
-          <div id="count" style="color:var(--muted)"></div>
-        </div>
-
-        <div class="grid" id="toolsGrid">
-          <!-- tool cards injected by JS -->
-        </div>
-      </section>
-
-      <!-- Blog topics starter -->
-      <section id="blogTopics" style="margin-top:22px">
-        <div class="card">
-          <h2 style="margin:0 0 8px 0">10 Starting Blog Post Ideas</h2>
-          <ol>
-            <li>Best Budget Smartphones for Students (2025)</li>
-            <li>Online Classes के लिए Best Laptops</li>
-            <li>Top 10 Free Study Apps (Android/iOS)</li>
-            <li>How to Use ChatGPT for Study — Ethical Prompts</li>
-            <li>Best Noise‑Cancelling Headphones for Focus</li>
-            <li>12th के बाद Best Career Options in 2025</li>
-            <li>Free Websites to Learn Coding (with project ideas)</li>
-            <li>Time Management Tips for Exam Season</li>
-            <li>Top Sites for Free Internship Listings</li>
-            <li>How to Make Flashcards from Notes (Auto workflows)</li>
-          </ol>
-        </div>
-      </section>
-
-      <!-- AdSense placeholder -->
-      <section style="margin-top:18px">
-        <div class="card" style="text-align:center;color:var(--muted)">
-          <!-- Replace this comment with AdSense code after approval -->
-          <!-- ADSENSE CODE HERE -->
-          <div style="font-weight:700">Ad Placeholder</div>
-          <div style="font-size:13px;margin-top:6px">Put Google AdSense Auto Ads or manual ad unit here after approval.</div>
-        </div>
-      </section>
-
-      <footer id="contact">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-          <div>© <span id="year"></span> Tech for Students • Made with ❤️</div>
-          <div style="color:var(--muted)">Contact: <a class="link" href="mailto:hello@example.com">hello@example.com</a></div>
-        </div>
-      </footer>
-    </main>
-  </div>
+  <footer>
+    <p>© 2025 Study Notes | Made with ❤️ by You</p>
+  </footer>
 
   <script>
-    // Starter data (same as React version) -- edit to add/remove tools
-    const TOOLS = [
-      {name:'ChatGPT', url:'https://chat.openai.com/', tagline:'Doubt solving, explanations, outlines, code help', category:['AI Assistant','Coding'], pricing:'Free + Pro', platforms:['Web','Android','iOS']},
-      {name:'Grammarly', url:'https://grammarly.com/', tagline:'Grammar, spelling, tone & plagiarism suggestions', category:['Writing'], pricing:'Free + Premium', platforms:['Web','Windows','macOS','Android','iOS']},
-      {name:'Wolfram Alpha', url:'https://www.wolframalpha.com/', tagline:'Math & science engine with step-by-step solutions', category:['STEM','Research'], pricing:'Free + Pro', platforms:['Web','Android','iOS']},
-      {name:'Notion', url:'https://www.notion.so/', tagline:'Notes, tasks, wiki & database; AI summaries', category:['Notes','Productivity'], pricing:'Free + Plus/AI', platforms:['Web','Windows','macOS','Android','iOS']},
-      {name:'QuillBot', url:'https://quillbot.com/', tagline:'Paraphrasing, summarizing & citation tools', category:['Writing'], pricing:'Free + Premium', platforms:['Web']},
-      {name:'Zotero', url:'https://www.zotero.org/', tagline:'Reference manager with one-click citations', category:['Research'], pricing:'Free (Open Source)', platforms:['Windows','macOS','Linux','Web']},
-      {name:'Canva', url:'https://www.canva.com/', tagline:'Presentations, posters, social posts with templates', category:['Design'], pricing:'Free + Pro', platforms:['Web','Windows','macOS','Android','iOS']},
-      {name:'Google Scholar', url:'https://scholar.google.com/', tagline:'Academic search & citations', category:['Research'], pricing:'Free', platforms:['Web']},
-      {name:'Perplexity', url:'https://www.perplexity.ai/', tagline:'Answer engine with citations for quick research', category:['AI Assistant','Research'], pricing:'Free + Pro', platforms:['Web','Android','iOS']},
-      {name:'DeepL', url:'https://www.deepl.com/', tagline:'High‑quality translations & writing assistance', category:['Languages','Writing'], pricing:'Free + Pro', platforms:['Web','Windows','macOS','Android','iOS']},
-      {name:'Desmos', url:'https://www.desmos.com/', tagline:'Graphing calculator & classroom activities', category:['STEM'], pricing:'Free', platforms:['Web','Android','iOS']},
-      {name:'Mendeley', url:'https://www.mendeley.com/', tagline:'Reference manager & PDF organizer', category:['Research'], pricing:'Free + Premium', platforms:['Windows','macOS','Linux','Web']}
-    ];
-
-    const CATEGORIES = ['All','AI Assistant','Writing','STEM','Research','Coding','Notes','Productivity','Design','Languages'];
-
-    const chipsEl = document.getElementById('categoryChips');
-    const toolsGrid = document.getElementById('toolsGrid');
-    const count = document.getElementById('count');
-    const searchInput = document.getElementById('search');
-    const clearBtn = document.getElementById('clearBtn');
-
-    let activeCategory = 'All';
-
-    function renderChips(){
-      chipsEl.innerHTML = '';
-      CATEGORIES.forEach(c=>{
-        const b = document.createElement('button');
-        b.className = 'chip' + (c===activeCategory? ' active':'');
-        b.textContent = c;
-        b.onclick = ()=>{activeCategory=c; renderChips(); renderTools();}
-        chipsEl.appendChild(b);
-      })
-    }
-
-    function matches(tool, q){
-      if(!q) return true;
-      q = q.toLowerCase();
-      return tool.name.toLowerCase().includes(q) || tool.tagline.toLowerCase().includes(q) || tool.category.join(' ').toLowerCase().includes(q);
-    }
-
-    function renderTools(){
-      const q = searchInput.value.trim().toLowerCase();
-      const filtered = TOOLS.filter(t=> (activeCategory==='All' || t.category.includes(activeCategory)) && matches(t,q));
-      toolsGrid.innerHTML = '';
-      filtered.forEach(t=>{
-        const a = document.createElement('a');
-        a.className = 'tool';
-        a.href = t.url;
-        a.target = '_blank';
-        a.rel = 'noreferrer';
-        a.innerHTML = `<h3>${t.name}</h3><p>${t.tagline}</p><div class="meta">${t.category.join(' • ')} • ${t.pricing}</div>`;
-        toolsGrid.appendChild(a);
+    function addSearch(inputId, gridId) {
+      const input = document.getElementById(inputId);
+      const grid = document.getElementById(gridId);
+      input.addEventListener("keyup", () => {
+        const query = input.value.toLowerCase();
+        const cards = grid.getElementsByClassName("card");
+        Array.from(cards).forEach(card => {
+          const text = card.innerText.toLowerCase();
+          card.style.display = text.includes(query) ? "block" : "none";
+        });
       });
-      count.textContent = filtered.length + ' tools';
     }
-
-    searchInput.addEventListener('input', ()=>{renderTools();});
-    clearBtn.addEventListener('click', ()=>{searchInput.value=''; renderTools();});
-
-    // subscribe demo
-    document.getElementById('subBtn').addEventListener('click',()=>{document.getElementById('subMsg').style.display='block';setTimeout(()=>document.getElementById('subMsg').style.display='none',2500);});
-
-    // init
-    document.getElementById('year').textContent = new Date().getFullYear();
-    renderChips(); renderTools();
+    addSearch("noteSearch", "notesGrid");
+    addSearch("blogSearch", "blogGrid");
   </script>
+
 </body>
 </html>
