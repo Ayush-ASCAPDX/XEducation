@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Orders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { animation: page-fade 420ms ease-out both; }
+    a, button, input, select, textarea {
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    @keyframes page-fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body { animation: none; }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <header class="bg-white shadow-md py-6">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Admin Order Management</h1>
+        <p class="text-sm text-gray-500 mt-1">Update order status securely from one place.</p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="window.location.href='admin-dashboard.html'" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          Dashboard
+        </button>
+        <button onclick="window.location.href='admin-products.html'" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+          Admin Products
+        </button>
+        <button onclick="window.location.href='index.html'" class="px-4 py-2 bg-black text-white rounded-lg hover:opacity-85 transition">
+          Back to Shop
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-10">
+    <div id="adminNotice" class="hidden mb-6 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-700 text-sm"></div>
+    <div id="ordersContainer" class="space-y-6"></div>
+  </main>
+
+  <script>
+    const apiBaseUrl = window.API_BASE_URL || (window.location.port === "5000" ? "" : "http://localhost:5000");
+    const STATUS_META = {
+      pending: { label: "Order Placed", badge: "bg-yellow-100 text-yellow-800" },
+      shipped: { label: "Shipped", badge: "bg-blue-100 text-blue-800" },
+      delivered: { label: "Delivered", badge: "bg-green-100 text-green-800" },
+      cancelled: { label: "Cancelled", badge: "bg-red-100 text-red-800" },
+      "return-requested": { label: "Return Requested", badge: "bg-orange-100 text-orange-800" },
+      returned: { label: "Returned", badge: "bg-slate-200 text-slate-800" },
+      refunded: { label: "Refunded", badge: "bg-emerald-100 text-emerald-800" }
+    };
+    const UPDATABLE_STATUSES = [
+      "pending",
+      "shipped",
+      "delivered",
+      "cancelled",
+      "return-requested",
+      "returned",
+      "refunded"
+    ];
+
+    function showAdminNotice(message) {
+      const notice = document.getElementById("adminNotice");
+      notice.textContent = message;
+      notice.classList.remove("hidden");
+    }
+
+    function formatStatus(status) {
+      return STATUS_META[status] || { label: status, badge: "bg-gray-100 text-gray-700" };
+    }
+
+    async function fetchProfile(token) {
+      const res = await fetch(`${apiBaseUrl}/api/user/profile`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) return null;
+      const data = await res.json();
+      return data?.user || null;
+    }
+
+    async function verifyAdminAccess() {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        showAdminNotice("Please login first.");
+        setTimeout(() => { window.location.href = "login.html"; }, 1000);
+        return null;
+      }
+
+      const user = await fetchProfile(token);
+      if (!user || user.role !== "admin") {
+        showAdminNotice("Admin access required. You are not allowed to view this page.");
+        setTimeout(() => { window.location.href = "index.html"; }, 1200);
+        return null;
+      }
+
+      return token;
+    }
+
+    function renderOrders(orders) {
+      const container = document.getElementById("ordersContainer");
+      if (!orders.length) {
+        container.innerHTML = '<p class="text-center text-gray-500">No orders found.</p>';
+        return;
+      }
+
+      container.innerHTML = orders.map((order) => {
+        const statusMeta = formatStatus(order.status);
+        const customerName = order.user?.name || "Unknown User";
+        const customerEmail = order.user?.email || "N/A";
+        const total = Number(order.totalAmount || 0).toFixed(2);
+
+        return `
+          <article class="bg-white rounded-lg shadow p-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+              <div>
+                <p class="text-gray-900 font-semibold">Order #${order._id}</p>
+                <p class="text-sm text-gray-500">${new Date(order.createdAt).toLocaleString()}</p>
+              </div>
+              <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold ${statusMeta.badge}">
+                ${statusMeta.label}
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 text-sm">
+              <div class="rounded-lg border border-gray-200 p-3">
+                <p class="text-gray-500">Customer</p>
+                <p class="font-medium text-gray-900">${customerName}</p>
+                <p class="text-gray-600">${customerEmail}</p>
+              </div>
+              <div class="rounded-lg border border-gray-200 p-3">
+                <p class="text-gray-500">Items</p>
+                <p class="font-medium text-gray-900">${order.items.length}</p>
+              </div>
+              <div class="rounded-lg border border-gray-200 p-3">
+                <p class="text-gray-500">Total</p>
+                <p class="font-medium text-gray-900">$${total}</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3 sm:items-center">
+              <select id="status-${order._id}" class="border rounded-md px-3 py-2 text-sm text-gray-700 w-full sm:w-56">
+                ${UPDATABLE_STATUSES.map((status) => {
+                  const optionMeta = formatStatus(status);
+                  return `<option value="${status}" ${order.status === status ? "selected" : ""}>${optionMeta.label}</option>`;
+                }).join("")}
+              </select>
+              <button onclick="updateOrderStatus('${order._id}')" class="px-4 py-2 bg-black text-white text-sm rounded-md hover:opacity-90 transition">
+                Update Status
+              </button>
+            </div>
+            <p id="status-msg-${order._id}" class="text-xs text-gray-500 mt-2"></p>
+          </article>
+        `;
+      }).join("");
+    }
+
+    async function loadAllOrders() {
+      const token = await verifyAdminAccess();
+      if (!token) return;
+
+      try {
+        const res = await fetch(`${apiBaseUrl}/api/orders`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Failed to load admin orders");
+        }
+
+        renderOrders(Array.isArray(data) ? data : []);
+      } catch (err) {
+        showAdminNotice(err.message || "Failed to load admin orders.");
+      }
+    }
+
+    async function updateOrderStatus(orderId) {
+      const token = localStorage.getItem("token");
+      const selectEl = document.getElementById(`status-${orderId}`);
+      const msgEl = document.getElementById(`status-msg-${orderId}`);
+
+      if (!token) {
+        msgEl.textContent = "Please login first.";
+        msgEl.className = "text-xs text-red-600 mt-2";
+        return;
+      }
+
+      const status = selectEl.value;
+
+      try {
+        msgEl.textContent = "Updating status...";
+        msgEl.className = "text-xs text-gray-500 mt-2";
+
+        const res = await fetch(`${apiBaseUrl}/api/orders/${orderId}/status`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify({ status })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.message || "Failed to update order status");
+        }
+
+        msgEl.textContent = "Status updated successfully.";
+        msgEl.className = "text-xs text-green-600 mt-2";
+      } catch (err) {
+        msgEl.textContent = err.message || "Failed to update order status.";
+        msgEl.className = "text-xs text-red-600 mt-2";
+      }
+    }
+
+    loadAllOrders();
+  </script>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | ASCAPDX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8f6;
+      --surface: #ffffff;
+      --surface-soft: #eef1ec;
+      --text: #111313;
+      --muted: #5f6661;
+      --accent: #0f766e;
+      --accent-strong: #0b5d57;
+      --line: #d8ddd7;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Manrope", sans-serif;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: "Sora", sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 10% 2%, rgba(15, 118, 110, 0.11), transparent 24%),
+        radial-gradient(circle at 95% 90%, rgba(17, 19, 19, 0.07), transparent 28%),
+        var(--bg);
+      animation: page-fade 420ms ease-out both;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    a, button, input, select, textarea {
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .top-banner {
+      background: linear-gradient(90deg, #0f766e, #134e4a);
+      color: #effcfb;
+    }
+
+    .nav-shell {
+      background: rgba(247, 248, 246, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-shell {
+      border: 1px solid var(--line);
+      border-radius: 1.2rem;
+      overflow: hidden;
+      color: #effcfb;
+      background: linear-gradient(120deg, #101716, #1a2a28);
+      position: relative;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 18%, rgba(255, 255, 255, 0.15), transparent 32%),
+        radial-gradient(circle at 90% 82%, rgba(255, 255, 255, 0.09), transparent 30%);
+      pointer-events: none;
+    }
+
+    .chip {
+      display: inline-flex;
+      border: 1px solid rgba(239, 252, 251, 0.42);
+      border-radius: 999px;
+      padding: 0.38rem 0.82rem;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d9f2ef;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      box-shadow: 0 10px 24px rgba(12, 16, 16, 0.04);
+    }
+
+    .input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 0.85rem;
+      background: #fff;
+      padding: 0.85rem 0.95rem;
+      font-size: 0.92rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.12);
+    }
+
+    .cta-btn {
+      background: var(--accent);
+      color: #eafcf9;
+      border-radius: 999px;
+      padding: 0.88rem 1.45rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-btn:hover {
+      background: var(--accent-strong);
+      transform: translateY(-2px);
+    }
+
+    .ghost-btn {
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.88rem 1.2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .ghost-btn:hover {
+      background: #f1f4f0;
+    }
+
+    @keyframes page-fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body class="h-full">
+  <div class="top-banner text-xs tracking-[0.1em] uppercase text-center py-2 px-4">
+    Free shipping on orders over $75 and 30-day returns
+  </div>
+
+  <nav class="sticky top-0 z-50 nav-shell">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <h1 class="text-xl font-semibold tracking-tight">ASCAPDX</h1>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="index.html#products" class="hover:opacity-65 transition-opacity">Shop</a>
+        <a href="index.html#why-us" class="hover:opacity-65 transition-opacity">Why Us</a>
+        <a href="about.html" class="hover:opacity-65 transition-opacity">About</a>
+        <a href="contact.html" class="font-semibold">Contact</a>
+      </div>
+      <a href="index.html" class="text-sm border border-[#d8ddd7] rounded-full px-4 py-2 hover:bg-[#f1f4f0]">Back to Store</a>
+    </div>
+  </nav>
+
+  <main class="px-6 py-10 md:py-14">
+    <section class="max-w-7xl mx-auto hero-shell p-8 md:p-12">
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-end">
+        <div>
+          <span class="chip">Contact ASCAPDX</span>
+          <h1 class="text-3xl md:text-5xl font-semibold tracking-tight mt-4 leading-tight">Need help with an order, product, or partnership?</h1>
+          <p class="mt-4 text-[#cbe0dc] text-base md:text-lg max-w-2xl">
+            Our support and operations teams respond quickly with clear next steps.
+            Send us your question and we will route it to the right team.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#contact-form" class="cta-btn">Send a Message</a>
+            <a href="index.html#products" class="ghost-btn">Browse Products</a>
+          </div>
+        </div>
+        <div class="card p-5 text-[#111313]">
+          <p class="text-xs uppercase tracking-[0.17em] text-[#6b746e]">Response standards</p>
+          <div class="mt-4 space-y-4">
+            <div>
+              <p class="font-semibold">General support</p>
+              <p class="text-sm text-[#5f6661]">Typically within 5 minutes during business hours.</p>
+            </div>
+            <div>
+              <p class="font-semibold">Order issues</p>
+              <p class="text-sm text-[#5f6661]">Priority routing for delayed, missing, or damaged items.</p>
+            </div>
+            <div>
+              <p class="font-semibold">Business inquiries</p>
+              <p class="text-sm text-[#5f6661]">Partnership and media requests answered within 24 hours.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-form" class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-[1fr_0.92fr] gap-6">
+      <article class="card p-6 md:p-8">
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">Message Us</p>
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-5">Tell us what you need</h2>
+        <form id="message-form" class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm text-[#5f6661] mb-2 block" for="fullName">Full name</label>
+              <input id="fullName" class="input" type="text" placeholder="Your name" required>
+            </div>
+            <div>
+              <label class="text-sm text-[#5f6661] mb-2 block" for="email">Email</label>
+              <input id="email" class="input" type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm text-[#5f6661] mb-2 block" for="topic">Topic</label>
+              <select id="topic" class="input" required>
+                <option value="">Select a topic</option>
+                <option value="order">Order support</option>
+                <option value="product">Product question</option>
+                <option value="return">Returns and refunds</option>
+                <option value="partner">Partnership</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-sm text-[#5f6661] mb-2 block" for="orderId">Order ID (optional)</label>
+              <input id="orderId" class="input" type="text" placeholder="e.g. ASC-20391">
+            </div>
+          </div>
+          <div>
+            <label class="text-sm text-[#5f6661] mb-2 block" for="message">Message</label>
+            <textarea id="message" class="input min-h-[150px]" placeholder="Share details so we can help faster..." required></textarea>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <button type="submit" class="cta-btn">Submit Request</button>
+            <span id="form-status" class="text-sm text-[#5f6661] hidden"></span>
+          </div>
+        </form>
+      </article>
+
+      <article class="card p-6 md:p-8">
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">Direct Channels</p>
+        <div class="space-y-5">
+          <div>
+            <h3 class="font-semibold">Customer Support</h3>
+            <p class="text-sm text-[#5f6661] mt-1">support@ascapdx.com</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Order Help</h3>
+            <p class="text-sm text-[#5f6661] mt-1">orders@ascapdx.com</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Partnerships</h3>
+            <p class="text-sm text-[#5f6661] mt-1">partners@ascapdx.com</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Business Hours</h3>
+            <p class="text-sm text-[#5f6661] mt-1">Monday to Friday: 9:00 AM to 7:00 PM</p>
+            <p class="text-sm text-[#5f6661] mt-1">Saturday: 10:00 AM to 4:00 PM</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Service Coverage</h3>
+            <p class="text-sm text-[#5f6661] mt-1">United States nationwide shipping and support.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="max-w-7xl mx-auto mt-10 card p-6 md:p-8">
+      <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">FAQ</p>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Before you contact us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-[#4c5450]">
+        <article>
+          <h3 class="font-semibold mb-2">Where can I track my order?</h3>
+          <p class="text-sm text-[#5f6661]">Open your account order history to see the latest shipping updates and tracking links.</p>
+        </article>
+        <article>
+          <h3 class="font-semibold mb-2">Can I change my shipping address?</h3>
+          <p class="text-sm text-[#5f6661]">Contact us immediately after placing your order. We can update details before dispatch.</p>
+        </article>
+        <article>
+          <h3 class="font-semibold mb-2">How do returns work?</h3>
+          <p class="text-sm text-[#5f6661]">Eligible products can be returned within 30 days. We provide instructions after request review.</p>
+        </article>
+        <article>
+          <h3 class="font-semibold mb-2">How fast do you answer?</h3>
+          <p class="text-sm text-[#5f6661]">Most support requests receive a first reply within minutes during listed business hours.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("message-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const status = document.getElementById("form-status");
+      status.textContent = "Message sent. Our team will contact you shortly.";
+      status.classList.remove("hidden");
+      this.reset();
+    });
+  </script>
+</body>
+</html>

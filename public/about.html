@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | ASCAPDX</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8f6;
+      --surface: #ffffff;
+      --surface-soft: #eef1ec;
+      --text: #111313;
+      --muted: #5f6661;
+      --accent: #0f766e;
+      --accent-strong: #0b5d57;
+      --line: #d8ddd7;
+      --dark: #0c1010;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Manrope", sans-serif;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: "Sora", sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 10% 2%, rgba(15, 118, 110, 0.11), transparent 24%),
+        radial-gradient(circle at 95% 90%, rgba(17, 19, 19, 0.07), transparent 28%),
+        var(--bg);
+      animation: page-fade 420ms ease-out both;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    a, button, input, select, textarea {
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .top-banner {
+      background: linear-gradient(90deg, #0f766e, #134e4a);
+      color: #effcfb;
+    }
+
+    .nav-shell {
+      background: rgba(247, 248, 246, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 1.2rem;
+      background: linear-gradient(130deg, #111817 0%, #12332f 62%, #0d4a44 100%);
+      color: #eafcf9;
+    }
+
+    .hero-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.16), transparent 32%),
+        radial-gradient(circle at 88% 80%, rgba(255, 255, 255, 0.1), transparent 28%);
+      pointer-events: none;
+    }
+
+    .chip {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+      padding: 0.38rem 0.82rem;
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d9f2ef;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      box-shadow: 0 10px 24px rgba(12, 16, 16, 0.04);
+    }
+
+    .metric {
+      background: linear-gradient(160deg, #ffffff, #f6f8f5);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1rem;
+    }
+
+    .metric-value {
+      font-family: "Sora", sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.03em;
+      color: #0f1d1c;
+      margin-top: 0.35rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 1.4rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.14);
+    }
+
+    .timeline-item::after {
+      content: "";
+      position: absolute;
+      left: 0.24rem;
+      top: 1.15rem;
+      width: 1px;
+      height: calc(100% - 0.7rem);
+      background: var(--line);
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    .cta-btn {
+      background: var(--accent);
+      color: #eafcf9;
+      border-radius: 999px;
+      padding: 0.88rem 1.45rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background-color 0.25s ease, transform 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-btn:hover {
+      background: var(--accent-strong);
+      transform: translateY(-2px);
+    }
+
+    .ghost-btn {
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 0.88rem 1.2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .ghost-btn:hover {
+      background: #f1f4f0;
+    }
+
+    @keyframes page-fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body class="h-full">
+  <div class="top-banner text-xs tracking-[0.1em] uppercase text-center py-2 px-4">
+    Free shipping on orders over $75 and 30-day returns
+  </div>
+
+  <nav class="sticky top-0 z-50 nav-shell">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <h1 class="text-xl font-semibold tracking-tight">ASCAPDX</h1>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="index.html#products" class="hover:opacity-65 transition-opacity">Shop</a>
+        <a href="index.html#why-us" class="hover:opacity-65 transition-opacity">Why Us</a>
+        <a href="about.html" class="font-semibold">About</a>
+        <a href="contact.html" class="hover:opacity-65 transition-opacity">Contact</a>
+      </div>
+      <a href="index.html" class="text-sm border border-[#d8ddd7] rounded-full px-4 py-2 hover:bg-[#f1f4f0]">Back to Store</a>
+    </div>
+  </nav>
+
+  <main class="px-6 py-10 md:py-14">
+    <section class="max-w-7xl mx-auto hero-shell p-8 md:p-12">
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 items-end">
+        <div>
+          <span class="chip">About ASCAPDX</span>
+          <h1 class="text-3xl md:text-5xl font-semibold tracking-tight mt-4 leading-tight">We build a practical, design-led store for people who value quality over noise.</h1>
+          <p class="mt-4 text-[#d5ebe8] text-base md:text-lg max-w-2xl">
+            ASCAPDX started as a small curation project focused on everyday products that solve real problems.
+            Today, we combine careful sourcing, fast fulfillment, and human support to deliver a reliable buying experience from discovery to delivery.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="index.html#products" class="cta-btn">Shop Collection</a>
+            <a href="#our-story" class="ghost-btn">Read Our Story</a>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="metric">
+            <p class="text-xs uppercase tracking-[0.17em] text-[#6b746e]">Orders Delivered</p>
+            <p class="metric-value">48k+</p>
+            <p class="text-sm text-[#5f6661] mt-1">Shipped with verified tracking and on-time updates.</p>
+          </div>
+          <div class="metric">
+            <p class="text-xs uppercase tracking-[0.17em] text-[#6b746e]">Customer Rating</p>
+            <p class="metric-value">4.9 / 5</p>
+            <p class="text-sm text-[#5f6661] mt-1">Consistent feedback on product quality and support.</p>
+          </div>
+          <div class="metric sm:col-span-2">
+            <p class="text-xs uppercase tracking-[0.17em] text-[#6b746e]">Support Commitment</p>
+            <p class="metric-value">&lt; 5 Min Avg</p>
+            <p class="text-sm text-[#5f6661] mt-1">Fast first-response during business and peak shopping hours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="our-story" class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <article class="card p-6 md:p-8">
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">Our Story</p>
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">From side project to trusted store</h2>
+        <p class="text-[#4c5450] leading-relaxed mb-4">
+          The original idea was simple: remove decision fatigue from online shopping.
+          Instead of listing thousands of average products, we focused on a smaller, better catalog with transparent descriptions and reliable performance.
+        </p>
+        <p class="text-[#4c5450] leading-relaxed mb-4">
+          Over time, customers kept coming back for the same reasons: clear value, consistent quality, and a support team that actually answers.
+          That feedback shaped our operations, from supplier selection to shipping standards and return handling.
+        </p>
+        <p class="text-[#4c5450] leading-relaxed">
+          Today, ASCAPDX runs on one core principle: if a product does not make everyday life easier, it does not belong in our store.
+        </p>
+      </article>
+      <article class="card p-6 md:p-8">
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">Timeline</p>
+        <div class="space-y-5">
+          <div class="timeline-item">
+            <p class="font-semibold">2022: First curated catalog launched</p>
+            <p class="text-sm text-[#5f6661] mt-1">Started with a focused lineup of daily-use essentials and direct customer feedback loops.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="font-semibold">2023: Fulfillment and support expansion</p>
+            <p class="text-sm text-[#5f6661] mt-1">Implemented faster shipping partners and introduced real-time order update standards.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="font-semibold">2024: Quality program formalized</p>
+            <p class="text-sm text-[#5f6661] mt-1">Added stricter product screening, defect tracking, and recurring vendor scorecards.</p>
+          </div>
+          <div class="timeline-item">
+            <p class="font-semibold">2025: Community-driven roadmap</p>
+            <p class="text-sm text-[#5f6661] mt-1">Built product categories and service improvements directly from customer behavior and support insights.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="max-w-7xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+      <article class="card p-6">
+        <p class="text-xs tracking-[0.18em] uppercase text-[#6e766f] mb-2">Mission</p>
+        <h3 class="text-xl font-semibold mb-2">Make online shopping more useful</h3>
+        <p class="text-[#5f6661]">We simplify decisions with better curation, clear product details, and predictable outcomes.</p>
+      </article>
+      <article class="card p-6">
+        <p class="text-xs tracking-[0.18em] uppercase text-[#6e766f] mb-2">Vision</p>
+        <h3 class="text-xl font-semibold mb-2">Set the bar for practical commerce</h3>
+        <p class="text-[#5f6661]">We want every purchase to feel confident, transparent, and worth repeating.</p>
+      </article>
+      <article class="card p-6">
+        <p class="text-xs tracking-[0.18em] uppercase text-[#6e766f] mb-2">Promise</p>
+        <h3 class="text-xl font-semibold mb-2">Quality, speed, and support</h3>
+        <p class="text-[#5f6661]">If something goes wrong, we fix it quickly with clear communication and fair solutions.</p>
+      </article>
+    </section>
+
+    <section class="max-w-7xl mx-auto mt-10 card p-6 md:p-8">
+      <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">How We Work</p>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Our quality and service process</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="metric">
+          <p class="font-semibold">1. Source</p>
+          <p class="text-sm text-[#5f6661] mt-2">We partner with vetted suppliers and review product performance data before listing.</p>
+        </div>
+        <div class="metric">
+          <p class="font-semibold">2. Validate</p>
+          <p class="text-sm text-[#5f6661] mt-2">Every item is checked for durability, consistency, and practical everyday value.</p>
+        </div>
+        <div class="metric">
+          <p class="font-semibold">3. Fulfill</p>
+          <p class="text-sm text-[#5f6661] mt-2">Orders are processed quickly with tracked delivery and proactive status notifications.</p>
+        </div>
+        <div class="metric">
+          <p class="font-semibold">4. Improve</p>
+          <p class="text-sm text-[#5f6661] mt-2">Feedback, returns, and support trends feed directly into better catalog and policy decisions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <article class="card p-6 lg:col-span-2">
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">Team Principles</p>
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-4">How we make decisions every day</h2>
+        <ul class="space-y-3 text-[#4c5450]">
+          <li><span class="font-semibold">Customer first:</span> We optimize for long-term trust, not short-term conversion tricks.</li>
+          <li><span class="font-semibold">Clear standards:</span> Products and policies must be understandable without hidden terms.</li>
+          <li><span class="font-semibold">Ownership culture:</span> Teams own outcomes end-to-end, from listing to post-purchase support.</li>
+          <li><span class="font-semibold">Continuous iteration:</span> We treat data and customer feedback as inputs for weekly improvements.</li>
+        </ul>
+      </article>
+      <article class="card p-6">
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">Impact</p>
+        <div class="space-y-4">
+          <div class="metric">
+            <p class="text-xs uppercase tracking-[0.16em] text-[#6b746e]">Repeat Buyers</p>
+            <p class="metric-value">63%</p>
+            <p class="text-sm text-[#5f6661] mt-1">Strong retention through quality and service consistency.</p>
+          </div>
+          <div class="metric">
+            <p class="text-xs uppercase tracking-[0.16em] text-[#6b746e]">Return Rate</p>
+            <p class="metric-value">Low 3%</p>
+            <p class="text-sm text-[#5f6661] mt-1">Detailed product data helps customers choose right the first time.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="max-w-7xl mx-auto mt-10 card p-6 md:p-8">
+      <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-3">FAQ</p>
+      <h2 class="text-2xl md:text-3xl font-semibold tracking-tight mb-6">Common questions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-[#4c5450]">
+        <article>
+          <h3 class="font-semibold mb-2">Where do your products come from?</h3>
+          <p class="text-sm text-[#5f6661]">We work with vetted suppliers and evaluate each product category for quality, durability, and consistency before listing.</p>
+        </article>
+        <article>
+          <h3 class="font-semibold mb-2">How fast is delivery?</h3>
+          <p class="text-sm text-[#5f6661]">Most orders are processed quickly with tracked delivery. Timing depends on your region and selected shipping option.</p>
+        </article>
+        <article>
+          <h3 class="font-semibold mb-2">Do you offer returns?</h3>
+          <p class="text-sm text-[#5f6661]">Yes. We offer a 30-day return window for eligible items. Our support team helps with status and next steps.</p>
+        </article>
+        <article>
+          <h3 class="font-semibold mb-2">How can I contact support?</h3>
+          <p class="text-sm text-[#5f6661]">Use the contact section on the homepage, or log in to your account and reach out from your order history flow.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto mt-10 card p-7 md:p-9 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+      <div>
+        <p class="text-xs tracking-[0.19em] uppercase text-[#6e766f] mb-2">Next Step</p>
+        <h2 class="text-2xl md:text-3xl font-semibold tracking-tight">Explore the collection built on these standards.</h2>
+        <p class="text-[#5f6661] mt-2">Browse products curated for utility, durability, and everyday performance.</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="index.html#products" class="cta-btn">Browse Products</a>
+        <a href="contact.html" class="ghost-btn">Contact Team</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
