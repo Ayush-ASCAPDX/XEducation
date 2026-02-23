@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8f6;
+      --line: #d8ddd7;
+      --text: #111313;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Manrope", sans-serif;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: "Sora", sans-serif;
+    }
+
+    body {
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 2%, rgba(15, 118, 110, 0.11), transparent 24%),
+        radial-gradient(circle at 95% 90%, rgba(17, 19, 19, 0.07), transparent 28%),
+        var(--bg);
+      animation: page-fade 420ms ease-out both;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    a, button, input, select, textarea {
+      transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .top-banner {
+      background: linear-gradient(90deg, #0f766e, #134e4a);
+      color: #effcfb;
+    }
+
+    .nav-shell {
+      background: rgba(247, 248, 246, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    @keyframes page-fade {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body class="h-full">
+
+  <div class="top-banner text-xs tracking-[0.1em] uppercase text-center py-2 px-4">
+    Free shipping on orders over $75 and 30-day returns
+  </div>
+
+  <nav class="sticky top-0 z-50 nav-shell">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <h1 class="text-xl font-semibold tracking-tight">ASCAPDX</h1>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="index.html#products" class="hover:opacity-65 transition-opacity">Shop</a>
+        <a href="index.html#why-us" class="hover:opacity-65 transition-opacity">Why Us</a>
+        <a href="about.html" class="hover:opacity-65 transition-opacity">About</a>
+        <a href="contact.html" class="hover:opacity-65 transition-opacity">Contact</a>
+        <a href="orders.html" class="hover:opacity-65 transition-opacity">My Orders</a>
+      </div>
+      <a href="index.html" class="text-sm border border-[#d8ddd7] rounded-full px-4 py-2 hover:bg-[#f1f4f0]">Back to Store</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="py-8">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-gray-900">Checkout</h2>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Left: Order Items -->
+    <section class="md:col-span-2 bg-white rounded-lg p-8 shadow border border-[#d8ddd7]">
+      <h2 class="text-2xl font-semibold mb-6">Your Order</h2>
+      <div id="orderSummary" class="space-y-4">
+        <!-- Order items will be injected here -->
+      </div>
+    </section>
+
+    <!-- Right: Summary -->
+    <aside class="bg-white rounded-lg p-8 shadow border border-[#d8ddd7] h-fit md:sticky md:top-24">
+      <h2 class="text-2xl font-semibold mb-6">Summary</h2>
+      <div class="space-y-4">
+        <p class="flex justify-between text-gray-700"><span>Total Items:</span> <span id="totalItems"></span></p>
+        <p class="flex justify-between text-gray-900 font-bold text-lg"><span>Total Price:</span> <span id="totalPrice"></span></p>
+      </div>
+      <button onclick="placeOrder()" class="mt-6 w-full bg-black text-white py-3 rounded-lg hover:opacity-80 transition">
+        Place Order
+      </button>
+      <p id="msg" class="mt-4 text-center text-sm font-medium"></p>
+    </aside>
+
+  </main>
+
+<script src="checkout.js"></script>
+
+</body>
+</html>
